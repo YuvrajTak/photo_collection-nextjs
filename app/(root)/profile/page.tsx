@@ -1,3 +1,4 @@
+"use client";
 import { auth } from "@clerk/nextjs";
 import Image from "next/image";
 import { redirect } from "next/navigation";
@@ -10,17 +11,20 @@ import { getUserById } from "@/lib/actions/user.actions";
 const Profile = async ({ searchParams }: SearchParamProps) => {
   const page = Number(searchParams?.page) || 1;
   const { userId } = auth();
+  console.log("userId111--->")
 
   if (!userId) redirect("/sign-in");
+  console.log("userId--->",userId)
 
-  const user = await getUserById(userId);
-  const images = await getUserImages({ page, userId: user._id });
+ // const user = await getUserById(userId);
+ // const images = await getUserImages({ page, userId: user._id });
 
   return (
     <>
-      <Header title="Profile" />
+     
+      <h1>Profile</h1>
 
-      <section className="profile">
+      {/* <section className="profile">
         <div className="profile-balance">
           <p className="p-14-medium md:p-16-medium">CREDITS AVAILABLE</p>
           <div className="mt-4 flex items-center gap-4">
@@ -31,13 +35,13 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
               height={50}
               className="size-9 md:size-12"
             />
-            <h2 className="h2-bold text-dark-600">{user.creditBalance}</h2>
-          </div>
+            {/* <h2 className="h2-bold text-dark-600">{user.creditBalance}</h2> */}
+          {/* </div>
         </div>
 
         <div className="profile-image-manipulation">
-          <p className="p-14-medium md:p-16-medium">IMAGE MANIPULATION DONE</p>
-          <div className="mt-4 flex items-center gap-4">
+          <p className="p-14-medium md:p-16-medium">IMAGE MANIPULATION DONE</p> */}
+          {/* <div className="mt-4 flex items-center gap-4">
             <Image
               src="/assets/icons/photo.svg"
               alt="coins"
@@ -46,17 +50,17 @@ const Profile = async ({ searchParams }: SearchParamProps) => {
               className="size-9 md:size-12"
             />
             <h2 className="h2-bold text-dark-600">{images?.data.length}</h2>
-          </div>
-        </div>
-      </section>
+          </div> */}
+        {/* </div>
+      </section> */} 
 
-      <section className="mt-8 md:mt-14">
+      {/* <section className="mt-8 md:mt-14">
         <Collection
           images={images?.data}
           totalPages={images?.totalPages}
           page={page}
         />
-      </section>
+      </section> */}
     </>
   );
 };
