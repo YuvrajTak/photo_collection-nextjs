@@ -13,6 +13,9 @@ const ImageDetails = async ({ params: { id } }: SearchParamProps) => {
   const { userId } = auth();
 
   const image = await getImageById(id);
+  if(!image){
+    return;
+  }
 
   return (
     <>
